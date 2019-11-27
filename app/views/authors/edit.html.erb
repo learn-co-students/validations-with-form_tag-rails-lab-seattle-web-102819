@@ -1,0 +1,42 @@
+<h2>Editing "<%= @author.name %>"</h2>
+<%= form_tag author_path(@author), method: "patch" do %>
+    <% if @author.errors.any? %>
+        <div id="error_explanation">
+            <ul>
+                <% @author.errors.full_messages.each do |m| %>
+                    <li><%= m %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <% if @author.errors[:name].empty? %>
+        <div class="field">
+    <% else %>
+        <div class="field_with_errors">
+    <% end %>
+        <%= label_tag "name", "Name" %>
+        <%= text_field_tag "name", @author.name %>
+    </div>
+
+    <% if @author.errors[:email].empty? %>
+        <div class="field">
+    <% else %>
+        <div class="field_with_errors">
+    <% end %>
+        <%= label_tag "email", "Email" %>
+        <p>Must be either "Fiction" or "Non-Fiction".</p>
+        <%= text_field_tag "email", @author.email %>
+    </div>
+
+    <% if @author.errors[:phone_number].empty? %>
+        <div class="field">
+    <% else %>
+        <div class="field_with_errors">
+    <% end %>
+        <%= label_tag "phone_number", "Phone Number" %>
+        <%= text_field_tag "phone_number", @author.phone_number %>
+    </div>
+
+    <%= submit_tag "Update" %>
+<% end %>
